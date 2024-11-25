@@ -11,6 +11,11 @@ CORS(app, origins="*")
 UPLOAD_FOLDER = "uploads"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True) 
 
+
+@app.route("/")
+def index():
+    return "Hello, World!"
+
 @app.route("/upload", methods=["POST"])
 def upload_file():
     try:
@@ -47,6 +52,8 @@ def analyze(uid):
 
 @app.route("/uploads/<uid>")
 def read_pdf(uid):
+    if('.' in uid):
+        return send_from_directory(UPLOAD_FOLDER, f'{uid}')
     return send_from_directory(UPLOAD_FOLDER, f'{uid}.pdf')
 
 

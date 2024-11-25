@@ -220,9 +220,9 @@ def do_the_thing(pdf_path):
 
 if __name__ == "__main__":
 
-    input_image = "image.jpg"
+    input_image = "image1.jpg"
     try:
-        t, f = process_form_image(input_image)
+        t, f, meta = process_form_image(input_image)
         print("\nDetected text groups:")
         for i, text in enumerate(t, 1):
             print(f"{i}. {text}")
